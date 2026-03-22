@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>🎓 Student Management</h2>
+        <div>
+            <a href="/add" class="btn btn-primary">+ Add Student</a>
+            <a href="/search" class="btn btn-dark">🔍 Search</a>
+        </div>
+    </div>
+    <table class="table table-hover border">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th><th>Name</th><th>Branch</th><th>Avg CGPA</th><th>Result</th><th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in students %}
+            <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.branch }}</td>
+                <td>{{ s.avg }}</td>
+                <td><span class="badge {{ 'bg-success' if s.result == 'Pass' else 'bg-danger' }}">{{ s.result }}</span></td>
+                <td><a href="/delete/{{ s.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this record?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
